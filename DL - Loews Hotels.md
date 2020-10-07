@@ -6,8 +6,6 @@
 
 * [Summary](#Summary)
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
-* [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
-* [Accommodation Booking Completed](#Accommodation-Booking-Completed)
 * [Beacon Globals Setup](#Beacon-Globals-Setup)
 * [Checkout Started](#Checkout-Started)
 * [Discount Code Entry Failed](#Discount-Code-Entry-Failed)
@@ -39,43 +37,6 @@
 This repository contains the Data Layer specification for Loews Hotels.
 Each section in the file represents a separate use case that needs to be implemented on the site.
 
-
-
-## Accommodation Booking Cancelled
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Accommodation Booking Cancelled",
-  "booking": {
-    "roomList": [
-      {
-        "location": {
-          "locationId": "<locationId>"
-        },
-        "room": {
-          "typeCode": "<typeCode>",
-          "rateCode": "<rateCode>",
-          "numAdults": "<numAdults>",
-          "numKids": "<numKids>"
-        }
-      }
-    ],
-    "transactionID": "<transactionID>",
-    "cancellationID": "<cancellationID>"
-  }
-});
-```
-
-|Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
-|---|---|---|---|---|---|---|---|
-|cancellationID|string|Unique identifier of a cancellation of a booking. Typically not the same as the booking ID.|CN-34456789|||||
-|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
-|numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
-|numKids|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
-|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
-|transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
-|typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
 
 
 ## Accommodation Booking Cancelled
