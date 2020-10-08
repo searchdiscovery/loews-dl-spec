@@ -248,6 +248,7 @@ appEventData.push({
 |Field|Type|Description|Examples|
 |---|---|---|---|
 |viewType|string|Type of interstitial view|alert, offer, info required|
+|name|string|Name of interstitial being viewed|alert, offer, info required|
 
 
 ## Listing Filter Added
