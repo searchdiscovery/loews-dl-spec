@@ -6,6 +6,7 @@
 
 * [Summary](#Summary)
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
+* [Accommodation Booking Completed](#Accommodation-Booking-Completed)
 * [Beacon Globals Setup](#Beacon-Globals-Setup)
 * [Checkout Started](#Checkout-Started)
 * [Discount Code Entry Failed](#Discount-Code-Entry-Failed)
@@ -19,7 +20,6 @@
 * [Listing Sort Order Changed](#Listing-Sort-Order-Changed)
 * [Location Listing Displayed](#Location-Listing-Displayed)
 * [Onsite Search Performed](#Onsite-Search-Performed)
-* [Order Placed](#Order-Placed)
 * [Page Load Started](#Page-Load-Started)
 * [Room Listing Displayed](#Room-Listing-Displayed)
 * [Room Listing Item Clicked](#Room-Listing-Item-Clicked)
@@ -373,41 +373,6 @@ appEventData.push({
 |requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |searchType|string|Describes the domain of the search.|products, properties, articles, authors, coupons, publications|||
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
-
-
-## Order Placed
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Order Placed",
-  "transaction": {
-    "item": [
-      {
-        "price": {
-          "sellingPrice": "<sellingPrice>"
-        },
-        "productInfo": {
-          "productID": "<productID>"
-        },
-        "quantity": "<quantity>"
-      }
-    ],
-    "transactionID": "<transactionID>",
-    "total": {
-      "currency": "<currency>"
-    }
-  }
-});
-```
-
-|Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
-|---|---|---|---|---|---|---|---|
-|currency|string|Currency of the transaction. ISO 4217 (3 character alpha), uppercase|USD, CAD, GBP, CHF|^[A-Z]{3}$|3|3||
-|productID|string|Unique Identifier of a product or offering. Must match the format of back-end systems if used as a key for import of product meta data. Most often, one level above SKU for products with SKU variants.|155, 65588, 987764448|||||
-|quantity|integer|Integer number of products being acted upon (added to a cart, removed from wishlist, purchased, reserved)|1, 2, 3, 4, 5||||1|
-|sellingPrice|string|String representation of the price paid after coupons or discounts. Positive. Up to two decimal places for cents. No currency symbol.|200, 29.99, 50, 0|^[0-9]*(\.[0-9]{1,2})?$||||
-|transactionID|string|Unique identifier of the transaction. Max Length 100. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|100||
 
 
 ## Page Load Started
