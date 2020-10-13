@@ -613,7 +613,8 @@ appEventData.push({
 
 });
 ```
-
+|Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
+|---|---|---|---|---|---|---|---|
 |productID|string|Product ID that was added to the booking|12345, breakfast|
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
 |priceType|string|Describes the price type of the related product|per night\/day, one time|
