@@ -616,7 +616,7 @@ appEventData.push({
 
 |productID|string|Product ID that was added to the booking|12345, breakfast|
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
-|priceType|string|Describes the price type of the related product|per night`/day, one time|
+|priceType|string|Describes the price type of the related product|per night\/day, one time|
 |basePrice|integer|cost of single unit of the product|15.00, 25.45|
 |quantity|integer|The quantity of the addition that was added to the booking|1, 3|
 
@@ -709,7 +709,7 @@ appEventData.push({
 |Field|Type|Description|Examples|
 |---|---|---|---|
 |profileUpdateType|string|Captures the type of profile update (i.e. change email) completed by the visitor.|email, address, phone, subscriptions|
-|preferenceList|string|A twice delimited string of preferenceType and preferenceValue pairs. Use ~ between type and value. Use the pipe character between pairs.|floor`|low floor,pillows`|soft|
+|preferenceList|string|A twice delimited string of preferenceType and preferenceValue pairs. Use ~ between type and value. Use the pipe character between pairs.|floor\|low floor,pillows\|soft|
 
 
 ## User Registered
