@@ -7,6 +7,7 @@
 * [Summary](#Summary)
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
 * [Accommodation Booking Completed](#Accommodation-Booking-Completed)
+* [Availability Listings Displayed](#Availability-Listings-Displayed)
 * [Beacon Globals Setup](#Beacon-Globals-Setup)
 * [Checkout Started](#Checkout-Started)
 * [Discount Code Entry Failed](#Discount-Code-Entry-Failed)
@@ -21,6 +22,10 @@
 * [Location Listing Displayed](#Location-Listing-Displayed)
 * [Onsite Search Performed](#Onsite-Search-Performed)
 * [Page Load Started](#Page-Load-Started)
+* [Rate Detail Viewed](#Rate-Detail-Viewed)
+* [Rate Selected](#Rate-Selected)
+* [Related Product Addition](#Related-Product-Addition)
+* [Room Detail View](#Room-Detail-View)
 * [Room Listing Displayed](#Room-Listing-Displayed)
 * [Room Listing Item Clicked](#Room-Listing-Item-Clicked)
 * [User Detected](#User-Detected)
@@ -49,13 +54,16 @@ appEventData.push({
     "roomList": [
       {
         "location": {
-          "locationId": "<locationId>"
+          "locationId": "<locationId>",
+          "marketCode": "<marketCode>"
         },
         "room": {
           "typeCode": "<typeCode>",
           "rateCode": "<rateCode>",
           "numAdults": "<numAdults>",
-          "numKids": "<numKids>"
+          "numChiildren": "<numChiildren>",
+          "cancelAdvanceDays": "<cancelAdvanceDays>",
+          "cancelDaysAfterBooking": "<cancelDaysAfterBooking>"
         }
       }
     ],
@@ -67,10 +75,13 @@ appEventData.push({
 
 |Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
 |---|---|---|---|---|---|---|---|
+|cancelAdvanceDays|string|The number of days between the cancellation and the start date of the stay.|CN-34456789|||||
+|cancelDaysAfterBooking|string|The number of days between the creation of the booking and the cancelation.|CN-34456789|||||
 |cancellationID|string|Unique identifier of a cancellation of a booking. Typically not the same as the booking ID.|CN-34456789|||||
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
+|marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
 |numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
-|numKids|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
+|numChiildren|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
@@ -88,18 +99,31 @@ appEventData.push({
         "room": {
           "ratePerNight": "<ratePerNight>",
           "typeCode": "<typeCode>",
-          "numKids": "<numKids>",
+          "numChiildren": "<numChiildren>",
           "numAdults": "<numAdults>",
-          "rateCode": "<rateCode>"
+          "rateCode": "<rateCode>",
+          "marketCode": "<marketCode>",
         },
         "location": {
           "locationId": "<locationId>"
+        },
+        "scheduling": {
+          "startDate": "<startDate>",
+          "requestedDatesCount": "<requestedDatesCount>",
+          "daysBeforeStartDate": "<daysBeforeStartDate>",
+          "endDate": "<endDate>",
+          "numNights": "<numNights>"
+        },
+        "voucherDiscount": {
+            "productLevelDiscountAmount": "<productLevelDiscountAmount>",
+              "productLevelDiscountCode": "<productLevelDiscountCode>"
         }
       }
     ],
     "total": {
       "currency": "<currency>"
     },
+    "checkoutType": "<checkoutType>",
     "transactionID": "<transactionID>",
     "payment": [
       {
@@ -112,15 +136,48 @@ appEventData.push({
 
 |Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
 |---|---|---|---|---|---|---|---|
+|checkoutType|string|The type of checkout associated with the completed booking.|travel agent, consumer, booking for someone else||
 |currency|string|Currency of the payment for the booking. ISO 4217 (3 character alpha), uppercase|USD, CAD, GBP, CHF|^[A-Z]{3}$|3|3||
+|daysBeforeStartDate|integer|Integer Number of days until the requested start date (same day = 0)|0, 1, 5, 6, 7, 10||0|
+|endDate|string|End date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
+|marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
 |numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
-|numKids|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
+|numChiildren|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
+|numNights|integer|Total number of nights in the stay.|1, 3, 5||
 |paymentMethod|string|Describes the method of payment for a transaction.|Credit Card, PayPal, Mastercard, Visa, Amex, Discover|||||
+|productLevelDiscountAmount|string|String representation of booking level discount for a transaction. Positive. Up to two decimal places for cents. No currency symbol.|350.65|||||
+|productLevelDiscountCode|string|Discount code applied for a specific room of a transaction..|10% off stay|||||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |ratePerNight|string|String representation of the price per use-period. Typically nightly rate for a hotel room or monthly rate for an apartment. Positive. Up to two decimal places for cents. No currency symbol.|200, 75.29, 150, 89.2|^[0-9]*(\.[0-9]{1,2})?$||||
+|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
+|startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
+
+
+
+## Availability Listings Displayed
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Availability Listings Displayed",
+  "availabilityListingsDisplayed": {
+    "findingMethod": "<findingMethod>",
+    "locationId": "<locationId>",
+    "marketCode": "<marketCode>",
+    "rateCode": "<rateCode>"
+  }
+});
+```
+
+|Field|Type|Description|Examples|Pattern|Minimum|
+|---|---|---|---|---|---|
+|findingMethod|string|The method that brought the user to availability listings.|Onsite Search, Breadcrumbs, Direct Entry||
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
+|marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
+|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data
 
 
 ## Beacon Globals Setup
@@ -140,9 +197,32 @@ appEventData.push({
 window.appEventData = window.appEventData || [];
 appEventData.push({
   "event": "Checkout Started"
+  "booking": {
+    "roomList": [
+      {
+        "room": {
+          "ratePerNight": "<ratePerNight>",
+          "typeCode": "<typeCode>",
+          "numChiildren": "<numChiildren>",
+          "numAdults": "<numAdults>",
+          "rateCode": "<rateCode>",
+          "marketCode": "<marketCode>"
+        },
+        "location": {
+          "locationId": "<locationId>"
+        },
+        "scheduling": {
+          "startDate": "<startDate>",
+          "requestedDatesCount": "<requestedDatesCount>",
+          "daysBeforeStartDate": "<daysBeforeStartDate>",
+          "endDate": "<endDate>",
+          "numNights": "<numNights>",
+        }
+      }
+    ]
+  }
 });
 ```
-
 
 
 ## Discount Code Entry Failed
@@ -152,14 +232,16 @@ window.appEventData = window.appEventData || [];
 appEventData.push({
   "event": "Discount Code Entry Failed",
   "voucherDiscount": {
-    "discountCode": "<discountCode>"
+    "discountCode": "<discountCode>",
+    "discountType": "<discountType>"
   }
 });
 ```
 
 |Field|Type|Description|Examples|
 |---|---|---|---|
-|discountCode|string|Discount code entered or applied|5OFFSHOES, AKRONCANDLES2019|
+|discountCode|string|Discount code entered or applied|10offnight, freelunch|
+|discountType|string|Discount type entered or applied|rate, add-on|
 
 
 ## Discount Code Entry Succeeded
@@ -169,14 +251,16 @@ window.appEventData = window.appEventData || [];
 appEventData.push({
   "event": "Discount Code Entry Succeeded",
   "voucherDiscount": {
-    "discountCode": "<discountCode>"
+    "discountCode": "<discountCode>",
+    "discountType": "<discountType>"
   }
 });
 ```
 
 |Field|Type|Description|Examples|
 |---|---|---|---|
-|discountCode|string|Discount code entered or applied|5OFFSHOES, AKRONCANDLES2019|
+|discountCode|string|Discount code entered or applied|10offnight, freelunch|
+|discountType|string|Discount type entered or applied|rate, add-on|
 
 
 ## Download Link Clicked
@@ -352,10 +436,15 @@ appEventData.push({
       "startDate": "<startDate>",
       "requestedDatesCount": "<requestedDatesCount>",
       "daysBeforeStartDate": "<daysBeforeStartDate>",
-      "endDate": "<endDate>"
+      "endDate": "<endDate>",
+      "numNights": "<numNights>"
     },
+    "locationId": "<locationId>",
+    "marketCode": "<marketCode>",
+    "rateCode": "<rateCode>"
     "capacity": {
       "people": {
+        "numRooms": "<numRooms>",
         "numAdults": "<numAdults>",
         "numChildren": "<numChildren>"
       }
@@ -368,8 +457,13 @@ appEventData.push({
 |---|---|---|---|---|---|
 |daysBeforeStartDate|integer|Integer Number of days until the requested start date (same day = 0)|0, 1, 5, 6, 7, 10||0|
 |endDate|string|End date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
+|marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
+|numNights|integer|Total number of nights in the stay.|1, 3, 5||
+|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data
+|numRooms|integer|Integer number of rooms searched for|1, 2, 3, 4, 5||1|
 |numAdults|integer|Integer number of adults for the booking|1, 2, 3, 4, 5||1|
-|numChildren|integer|Integer number of kids for the booking|1, 2, 3, 4, 5||0|
+|numChildren|integer|Integer number of children for the booking|1, 2, 3, 4, 5||0|
 |requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |searchType|string|Describes the domain of the search.|products, properties, articles, authors, coupons, publications|||
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
@@ -404,6 +498,129 @@ appEventData.push({
 |subsection|string|First sub-level of hierarchy under pageCategory or Site Section.|Shop > Kids, Shop > Mens, Shop > Womens||
 
 
+## Rate Detail Viewed
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Rate Detail Viewed",
+  "booking": [
+    {
+      "roomlist": {
+        "typeCode": "<typeCode>",
+        "locationID": "<locationID>",
+        "marketCode": "<marketCode>",
+        "rateCode": "<rateCode>"
+        },
+        "capacity": {
+          "people": {
+            "numRooms": "<numRooms>",
+            "numAdults": "<numAdults>",
+            "numChildren": "<numChildren>"
+        }
+        "scheduling": {
+          "startDate": "<startDate>",
+          "requestedDatesCount": "<requestedDatesCount>",
+          "daysBeforeStartDate": "<daysBeforeStartDate>",
+          "endDate": "<endDate>",
+          "numNights": "<numNights>"
+        },
+      }
+    }
+  ]
+});
+```
+|Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
+|---|---|---|---|---|---|---|---|
+|daysBeforeStartDate|integer|Integer Number of days until the requested start date (same day = 0)|0, 1, 5, 6, 7, 10||0|
+|endDate|string|End date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
+|numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
+|numChiildren|integer|Integer number of children for the booking.|1, 2, 3, 4, 5||||0|
+|numNights|integer|Total number of nights in the stay.|1, 3, 5||
+|numRooms|integer|Total number of rooms in the stay.|1, 3, 5||
+|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
+|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
+|startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
+
+
+## Rate Selected
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Rate Selected",
+  "rateSelectionmethod": "<rateSelectionmethod>",
+  "booking": [
+    {
+      "roomlist": {
+        "typeCode": "<typeCode>",
+        "locationID": "<locationID>",
+        "marketCode": "<marketCode>",
+        "rateCode": "<rateCode>",
+        },
+        "capacity": {
+          "people": {
+            "numAdults": "<numAdults>",
+            "numChildren": "<numChildren>"
+        }
+        "scheduling": {
+          "startDate": "<startDate>",
+          "requestedDatesCount": "<requestedDatesCount>",
+          "daysBeforeStartDate": "<daysBeforeStartDate>",
+          "endDate": "<endDate>",
+          "numNights": "<numNights>"
+        },
+      }
+    }
+  ]
+});
+```
+|Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
+|---|---|---|---|---|---|---|---|
+|daysBeforeStartDate|integer|Integer Number of days until the requested start date (same day = 0)|0, 1, 5, 6, 7, 10||0|
+|endDate|string|End date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
+|numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
+|numChiildren|integer|Integer number of children for the booking.|1, 2, 3, 4, 5||||0|
+|numNights|integer|Total number of nights in the stay.|1, 3, 5||
+|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
+|rateSelectionMethod|The rate selection method associated with the rate selection.|Same as Room 1, Standard|||||
+|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
+|startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
+
+
+## Related Product Addition
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Related Product Addition",
+  "product": [
+  {
+    "productInfo": {
+      "productID": "<productID>",
+      "locationID": "<locationID>",
+      "priceType": "<priceType>",
+      "basePrice": "<basePrice>",
+      "quantity": "<quantity>"
+    }
+  }
+]
+});
+
+});
+```
+
+|productID|string|Product ID that was added to the booking|12345, breakfast|
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
+|priceType|string|Describes the price type of the related product|per night/day, one time|
+|basePrice|integer|cost of single unit of the product|15.00, 25.45|
+|quantity|integer|The quantity of the addition that was added to the booking|1, 3|
+
+
 ## Room Listing Displayed
 
 ```js
@@ -424,7 +641,6 @@ appEventData.push({
       }
     ],
     "resultsCount": "<resultsCount>",
-    "previousResultsCount": "<previousResultsCount>",
     "filterList": {
       "length": "<length>"
     },
@@ -442,7 +658,6 @@ appEventData.push({
 |listingType|string|The type of results being listed|text, product, location, event, room, product location||
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
 |resultsCount|integer|The total number of items returned that matched the search criteria. (Integer)|1, 21, 111, 166|0|
-|previousResultsCount|integer|The total number of items returned for the previous search, when subsequent filters are applied to a current search. (Integer)|1, 21, 111, 166|0|
 |sortDefault|integer|The default sort value on listings|A to Z, Low to High, Newest to Oldest|0|
 |sortOrder|string|Indicates the sort order.|high-low, low-high, nearest-farthest, a-z, newest-oldest||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City||
@@ -484,6 +699,9 @@ appEventData.push({
   "event": "User Profile Updated",
   "user": {
     "profileUpdateType": "<profileUpdateType>"
+  },
+  "roomPreferences": {
+  "preferenceList": "<preferenceList>"
   }
 });
 ```
@@ -491,6 +709,7 @@ appEventData.push({
 |Field|Type|Description|Examples|
 |---|---|---|---|
 |profileUpdateType|string|Captures the type of profile update (i.e. change email) completed by the visitor.|email, address, phone, subscriptions|
+|preferenceList|string|A twice delimited string of preferenceType and preferenceValue pairs. Use ~ between type and value. Use the pipe character between pairs.|floor/|low floor,pillows/|soft|
 
 
 ## User Registered
@@ -520,7 +739,8 @@ appEventData.push({
   "event": "User Signed In",
   "user": {
     "custKey": "<custKey>",
-    "loginStatus": "<loginStatus>"
+    "loginStatus": "<loginStatus>",
+    "loginMethod": "<loginMethod>"
   }
 });
 ```
@@ -529,6 +749,7 @@ appEventData.push({
 |---|---|---|---|
 |custKey|string|Unique identifier of a customer. Any id's considered PII must be hashed.||
 |loginStatus|string|Describes the login state of the user|logged in, logged out, guest|
+|loginMethod|string|Describes the method in which the user was brought to sign-in|global footer, checkout faster, etc.|
 
 
 ## User Signed Out
