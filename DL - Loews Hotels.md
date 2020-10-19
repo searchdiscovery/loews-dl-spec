@@ -5,6 +5,7 @@
 ## Index of Contents
 
 * [Summary](#Summary)
+* [Event Order](#Event Order)
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
 * [Accommodation Booking Completed](#Accommodation-Booking-Completed)
 * [Availability Listings Displayed](#Availability-Listings-Displayed)
@@ -22,6 +23,7 @@
 * [Location Listing Displayed](#Location-Listing-Displayed)
 * [Onsite Search Performed](#Onsite-Search-Performed)
 * [Page Load Started](#Page-Load-Started)
+* [Page Load Completed](#Page-Load-Completed)
 * [Rate Detail Viewed](#Rate-Detail-Viewed)
 * [Rate Selected](#Rate-Selected)
 * [Related Product Addition](#Related-Product-Addition)
@@ -40,9 +42,11 @@
 ## Summary
 
 This repository contains the Data Layer specification for Loews Hotels.
-Each section in the file represents a separate use case that needs to be implemented on the site. Details on the deployment of each specificaiton below can be found at https://docs.google.com/spreadsheets/d/1LYmhpSXVy13fwEFvveAsqT8EqBdnhk2JQopm7asSwuE/edit?usp=sharing
+Each section in the file represents a separate use case that needs to be implemented on the site. Details on the deployment of each specification below can be found at https://docs.google.com/spreadsheets/d/1jd5Ep6VKfyVEhrl4CFvfo4WLYZxD0aoIm2GQV8Ep1DA/edit?usp=sharing.
 
+## Event Order
 
+As this site is a single page application, the order in which events are dispatched from the application are critical to proper analytics functioning. First there is an event below named [Page Load Started](#Page-Load-Started) that contains "page" infor,ation such as page name, site section, etc. Whenever a scenario occurs where there is a standard "page view" OR an "on view," this [Page Load Started](#Page-Load-Started) event should be first dispatched, followed by any relevant "On View" events and then finally, the [Page Load Completed](#Page-Load-Completed) event would be dispatched, indicating that all relevant data about out a page or view was ready and the final communication can be sent to the analytics platform.
 
 ## Accommodation Booking Cancelled
 
@@ -511,6 +515,16 @@ appEventData.push({
 |siteExperience|string|Describes the version of the site that is being shown|Responsive, Mobile, Desktop||
 |siteLanguage|string|Language in which the site is presented ISO 639-1 code.|en-us, en-gb, ch-cn, fr-ca, fr-fr, da|^[a-z]{2}([-]{1}[a-z]{2}){0,1}$|
 |subsection|string|First sub-level of hierarchy under pageCategory or Site Section.|Shop > Kids, Shop > Mens, Shop > Womens||
+
+
+## Page Load Completed
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Page Load Completed"
+});
+```
 
 
 ## Rate Detail Viewed
