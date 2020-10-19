@@ -46,7 +46,7 @@ Each section in the file represents a separate use case that needs to be impleme
 
 ## Event Order
 
-As this site is a single page application, the order in which events are dispatched from the application are critical to proper analytics functioning. First there is an event below named [Page Load Started](#Page-Load-Started) that contains "page" infor,ation such as page name, site section, etc. Whenever a scenario occurs where there is a standard "page view" OR an "on view," this [Page Load Started](#Page-Load-Started) event should be first dispatched, followed by any relevant "On View" events and then finally, the [Page Load Completed](#Page-Load-Completed) event would be dispatched, indicating that all relevant data about out a page or view was ready and the final communication can be sent to the analytics platform.
+As this site is a single page application, the order in which events are dispatched from the application are critical to proper analytics functioning. First there is an event below named [Page Load Started](#Page-Load-Started) that contains "page" information such as page name, site section, etc. Whenever a scenario occurs where there is a standard "page view" OR an "on view," this [Page Load Started](#Page-Load-Started) event should be first dispatched, followed by any relevant "On View" events and then finally, the [Page Load Completed](#Page-Load-Completed) event would be dispatched, indicating that all relevant data about out a page or view was ready and the final communication can be sent to the analytics platform.
 
 ---> Page Load Started > On View Events > Page Load Completed
 
