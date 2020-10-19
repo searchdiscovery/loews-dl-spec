@@ -225,7 +225,7 @@ appEventData.push({
 ```
 
 |Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
-|---|---|---|---|---|---|---|---|||
+|---|---|---|---|---|---|---|---|
 |daysBeforeStartDate|integer|Integer Number of days until the requested start date (same day = 0)|0, 1, 5, 6, 7, 10||0|
 |endDate|string|End date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
