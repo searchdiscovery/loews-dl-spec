@@ -40,7 +40,7 @@
 ## Summary
 
 This repository contains the Data Layer specification for Loews Hotels.
-Each section in the file represents a separate use case that needs to be implemented on the site.
+Each section in the file represents a separate use case that needs to be implemented on the site. Details on the deployment of each specificaiton below can be found at https://docs.google.com/spreadsheets/d/1LYmhpSXVy13fwEFvveAsqT8EqBdnhk2JQopm7asSwuE/edit?usp=sharing
 
 
 
