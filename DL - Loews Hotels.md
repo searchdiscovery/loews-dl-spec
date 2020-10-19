@@ -25,7 +25,7 @@
 * [Rate Detail Viewed](#Rate-Detail-Viewed)
 * [Rate Selected](#Rate-Selected)
 * [Related Product Addition](#Related-Product-Addition)
-* [Room Detail View](#Room-Detail-View)
+* [Room Detail Viewed](#Room-Detail-Viewed)
 * [Room Listing Displayed](#Room-Listing-Displayed)
 * [Room Listing Item Clicked](#Room-Listing-Item-Clicked)
 * [User Detected](#User-Detected)
