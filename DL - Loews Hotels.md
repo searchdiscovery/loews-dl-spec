@@ -9,7 +9,6 @@
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
 * [Accommodation Booking Completed](#Accommodation-Booking-Completed)
 * [Availability Listings Displayed](#Availability-Listings-Displayed)
-* [Beacon Globals Setup](#Beacon-Globals-Setup)
 * [Checkout Started](#Checkout-Started)
 * [Discount Code Entry Failed](#Discount-Code-Entry-Failed)
 * [Discount Code Entry Succeeded](#Discount-Code-Entry-Succeeded)
@@ -117,12 +116,16 @@ appEventData.push({
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
-        },
-        "voucherDiscount": {
-            "productLevelDiscountAmount": "<productLevelDiscountAmount>",
-              "productLevelDiscountCode": "<productLevelDiscountCode>"
         }
       }
+    ],
+    "discountList":[
+        {
+          "discount": {
+          "discountAmount": "<discountAmount>",
+          "discountCode": "<discountCode>"
+          }
+        }
     ],
     "total": {
       "currency": "<currency>"
@@ -150,8 +153,8 @@ appEventData.push({
 |numChildren|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
 |numNights|integer|Total number of nights in the stay.|1, 3, 5||
 |paymentMethod|string|Describes the method of payment for a transaction.|Credit Card, PayPal, Mastercard, Visa, Amex, Discover|||||
-|productLevelDiscountAmount|string|String representation of booking level discount for a transaction. Positive. Up to two decimal places for cents. No currency symbol.|350.65|||||
-|productLevelDiscountCode|string|Discount code applied for a specific room of a transaction..|10% off stay|||||
+|discountAmount|string|String representation of booking level discount for a transaction. Positive. Up to two decimal places for cents. No currency symbol.|350.65|||||
+|discountCode|string|Discount code applied at the booking level of a transaction..|10% off stay|||||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |ratePerNight|string|String representation of the price per use-period. Typically nightly rate for a hotel room or monthly rate for an apartment. Positive. Up to two decimal places for cents. No currency symbol.|200, 75.29, 150, 89.2|^[0-9]*(\.[0-9]{1,2})?$||||
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
@@ -181,17 +184,6 @@ appEventData.push({
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
 |marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data
-
-
-## Beacon Globals Setup
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Beacon Globals Setup"
-});
-```
-
 
 
 ## Checkout Started
@@ -701,17 +693,6 @@ appEventData.push({
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City||
 
 
-## Room Listing Item Clicked
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Room Listing Item Clicked"
-});
-```
-
-
-
 ## User Detected
 
 ```js
@@ -719,7 +700,9 @@ window.appEventData = window.appEventData || [];
 appEventData.push({
   "event": "User Detected",
   "user": {
-    "loginStatus": "<loginStatus>"
+    "loginStatus": "<loginStatus>",
+    "custKey": "<custKey>"
+    }
   }
 });
 ```
@@ -727,6 +710,7 @@ appEventData.push({
 |Field|Type|Description|Examples|
 |---|---|---|---|
 |loginStatus|string|Describes the login state of the user|logged in, logged out, guest|
+|custKey|string|Unique identifier of a customer if logged in. Any id's considered PII must be hashed.||
 
 
 ## User Profile Updated
