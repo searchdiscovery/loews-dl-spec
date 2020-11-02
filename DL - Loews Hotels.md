@@ -19,7 +19,6 @@
 * [Interstitial Viewed](#Interstitial-Viewed)
 * [Listing Filter Added](#Listing-Filter-Added)
 * [Listing Filter Removed](#Listing-Filter-Removed)
-* [Listing Sort Order Changed](#Listing-Sort-Order-Changed)
 * [Location Listing Displayed](#Location-Listing-Displayed)
 * [Onsite Search Performed](#Onsite-Search-Performed)
 * [Page Load Started](#Page-Load-Started)
@@ -388,23 +387,6 @@ appEventData.push({
 |Field|Type|Description|Examples|
 |---|---|---|---|
 |filterList|string|A twice delimited string of filterType and filterValue pairs. Use ~ between type and value. Use | between pairs|sort~price ascending|color~green|size~medium|
-
-
-## Listing Sort Order Changed
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Listing Sort Order Changed",
-  "listingRefined": {
-    "sortOrder": "<sortOrder>"
-  }
-});
-```
-
-|Field|Type|Description|Examples|
-|---|---|---|---|
-|sortOrder|string|Indicates the sort order.|high-low, low-high, nearest-farthest, a-z, newest-oldest|
 
 
 ## Location Listing Displayed
