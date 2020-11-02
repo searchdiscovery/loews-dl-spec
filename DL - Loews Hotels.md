@@ -87,7 +87,7 @@ appEventData.push({
 |marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
 |numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
 |numChildren|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
-|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
+|rateCode|string|Description of the rate beinged. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
 
@@ -406,23 +406,6 @@ appEventData.push({
 |---|---|---|---|
 |listingDriver|string|Describes the action that caused the listing to be displayed|Onsite Search, Curated Assortment, Navigation|
 |listingType|string|The type of results being listed|text, product, location, event, room, product location|
-
-
-## Offer Successfully Applied
-
-```js
-window.appEventData = window.appEventData || [];
-appEventData.push({
-  "event": "Offer Successfully Applied",
-  "offerDiscount": {
-    "offerCode": "<offerCode>"
-  }
-});
-```
-
-|Field|Type|Description|Examples|
-|---|---|---|---|
-|offerCode|string|Offer code applied|5OFFSTAY, NEWYORKPARKING|
 
 
 ## Onsite Search Performed
