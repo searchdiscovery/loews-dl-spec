@@ -81,8 +81,8 @@ appEventData.push({
 
 |Field|Type|Description|Examples|Pattern|Min Length|Max Length|Minimum|
 |---|---|---|---|---|---|---|---|
-|cancelAdvanceDays|string|The number of days between the cancellation and the start date of the stay.|CN-34456789|||||
-|cancelDaysAfterBooking|string|The number of days between the creation of the booking and the cancelation.|CN-34456789|||||
+|cancelAdvanceDays|integer|The number of days between the cancellation and the start date of the stay.|7|||||
+|cancelDaysAfterBooking|integer|The number of days between the creation of the booking and the cancelation.|3|||||
 |cancellationID|string|Unique identifier of a cancellation of a booking. Typically not the same as the booking ID.|CN-34456789|||||
 |locationId|string|Unique Identifier of a Location.|155, 65588, 987764448|||||
 |marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
