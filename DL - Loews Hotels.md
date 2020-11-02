@@ -114,7 +114,6 @@ appEventData.push({
         },
         "scheduling": {
           "startDate": "<startDate>",
-          "requestedDatesCount": "<requestedDatesCount>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
@@ -155,7 +154,6 @@ appEventData.push({
 |productLevelDiscountCode|string|Discount code applied for a specific room of a transaction..|10% off stay|||||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |ratePerNight|string|String representation of the price per use-period. Typically nightly rate for a hotel room or monthly rate for an apartment. Positive. Up to two decimal places for cents. No currency symbol.|200, 75.29, 150, 89.2|^[0-9]*(\.[0-9]{1,2})?$||||
-|requestedDatesCount|integer|Integer Number of days requested. This would be the same as numNights +1|8, 1, 5, 6, 7, 10||1|
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
