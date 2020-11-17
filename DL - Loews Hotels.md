@@ -208,7 +208,6 @@ appEventData.push({
         },
         "scheduling": {
           "startDate": "<startDate>",
-          "requestedDatesCount": "<requestedDatesCount>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>",
@@ -230,7 +229,6 @@ appEventData.push({
 |numNights|integer|Total number of nights in the stay.|1, 3, 5||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |ratePerNight|string|String representation of the price per use-period. Typically nightly rate for a hotel room or monthly rate for an apartment. Positive. Up to two decimal places for cents. No currency symbol.|200, 75.29, 150, 89.2|^[0-9]*(\.[0-9]{1,2})?$||||
-|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
 
@@ -410,7 +408,6 @@ appEventData.push({
     },
     "scheduling": {
       "startDate": "<startDate>",
-      "requestedDatesCount": "<requestedDatesCount>",
       "daysBeforeStartDate": "<daysBeforeStartDate>",
       "endDate": "<endDate>",
       "numNights": "<numNights>"
@@ -440,7 +437,6 @@ appEventData.push({
 |numRooms|integer|Integer number of rooms searched for|1, 2, 3, 4, 5||1|
 |numAdults|integer|Integer number of adults for the booking|1, 2, 3, 4, 5||1|
 |numChildren|integer|Integer number of children for the booking|1, 2, 3, 4, 5||0|
-|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |searchType|string|Describes the domain of the search.|products, properties, articles, authors, coupons, publications|||
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 
@@ -506,7 +502,6 @@ appEventData.push({
         }
         "scheduling": {
           "startDate": "<startDate>",
-          "requestedDatesCount": "<requestedDatesCount>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
@@ -526,7 +521,6 @@ appEventData.push({
 |numNights|integer|Total number of nights in the stay.|1, 3, 5||
 |numRooms|integer|Total number of rooms in the stay.|1, 3, 5||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
-|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
 
@@ -553,7 +547,6 @@ appEventData.push({
         }
         "scheduling": {
           "startDate": "<startDate>",
-          "requestedDatesCount": "<requestedDatesCount>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
@@ -573,7 +566,6 @@ appEventData.push({
 |numNights|integer|Total number of nights in the stay.|1, 3, 5||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |rateSelectionMethod|The rate selection method associated with the rate selection.|Same as Room 1, Standard|||||
-|requestedDatesCount|integer|Integer Number of days requested.|8, 1, 5, 6, 7, 10||1|
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
 
