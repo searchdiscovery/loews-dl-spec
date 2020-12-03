@@ -684,6 +684,37 @@ appEventData.push({
 |sortOrder|string|Indicates the sort order.|high-low, low-high, nearest-farthest, a-z, newest-oldest||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City||
 
+## Room Listing Item Clicked
+
+```js
+window.appEventData = window.appEventData || [];
+appEventData.push({
+  "event": "Room Listing Item Clicked",
+  "listingItemCliked": {
+    "filterList": "<filterList>",
+    "listingDriver": "<listingDriver>",
+    "listing": [
+      {
+        "location": {
+          "locationId": "<locationId>"
+        },
+        "room": {
+          "rateCode": "<rateCode>"
+          "typeCode": "<typeCode>"
+        }
+      }
+    ],
+  }
+});
+```
+
+|Field|Type|Description|Examples|Minimum|
+|---|---|---|---|---|
+|filterList|string|A twice delimited string of filterType and filterValue pairs. Use ~ between type and value. Use | between pairs|sort~price ascending|color~green|size~medium||
+|listingDriver|string|Describes the action that caused the listing to be displayed|Onsite Search, Curated Assortment, Navigation||
+|locationId|string|Unique Identifier of a Location.|155, 65588, 987764448||
+|rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
+|typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City||
 
 ## User Detected
 
