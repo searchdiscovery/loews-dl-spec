@@ -127,7 +127,11 @@ appEventData.push({
         }
     ],
     "total": {
-      "currency": "<currency>"
+      "currency": "<currency>",
+      "paymentAmount": "<paymentAmount>",
+      "totalRooms": "<totalRooms>",
+      "totalNights": "<totalNights>"
+      
     },
     "checkoutType": "<checkoutType>",
     "transactionID": "<transactionID>",
@@ -151,14 +155,18 @@ appEventData.push({
 |numAdults|integer|Integer number of adults for the booking.|1, 2, 3, 4, 5||||1|
 |numChildren|integer|Integer number of kids for the booking.|1, 2, 3, 4, 5||||0|
 |numNights|integer|Total number of nights in the stay.|1, 3, 5||
+|paymentAmount|string|String representation of the total payment made as a part of the transaction, not including tax. Positive. Up to two decimal places for cents. No currency symbol.|425.57|||||
 |paymentMethod|string|Describes the method of payment for a transaction.|Credit Card, PayPal, Mastercard, Visa, Amex, Discover|||||
 |discountAmount|string|String representation of booking level discount for a transaction. Positive. Up to two decimal places for cents. No currency symbol.|350.65|||||
 |discountCode|string|Discount code applied at the booking level of a transaction..|10% off stay|||||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data import.|AAA, MILITARY, CORP-567, CORP-345|||||
 |ratePerNight|string|String representation of the price per use-period. Typically nightly rate for a hotel room or monthly rate for an apartment. Positive. Up to two decimal places for cents. No currency symbol.|200, 75.29, 150, 89.2|^[0-9]*(\.[0-9]{1,2})?$||||
 |startDate|string|Start date requested. ISO 8601 form (YYYY-MM-DD). Jan 1, 2019 is 2019-01-01|2001-12-22, 2011-01-01|^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])$||
+|totalNights|integer|Total number of nights in the booking. If multiple rooms are booked, this is the total of nights across all rooms.|5, 7, 10||
+|totalRooms|integer|Total number of rooms in the booking. If multiple rooms are booked, this is the total of rooms booked.|2, 3, 4||
 |transactionID|string|Unique identifier of the transaction. Max Length 20. Used as a key for upload of post transaction data.||^[a-zA-Z0-9]{6,20}$|6|20||
 |typeCode|string|A code describing the room features. Often indicates number of beds, smoking or non-smoking, ADA accessibility and so on.|1-K-NS, 2-Q-S, S-K-NS-City|||||
+
 
 
 
