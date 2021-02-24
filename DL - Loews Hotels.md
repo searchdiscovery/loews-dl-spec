@@ -506,13 +506,13 @@ appEventData.push({
             "numRooms": "<numRooms>",
             "numAdults": "<numAdults>",
             "numChildren": "<numChildren>"
-        }
+        },
         "scheduling": {
           "startDate": "<startDate>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
-        },
+        }
       }
     }
   ]
@@ -551,13 +551,13 @@ appEventData.push({
           "people": {
             "numAdults": "<numAdults>",
             "numChildren": "<numChildren>"
-        }
+        },
         "scheduling": {
           "startDate": "<startDate>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>",
           "numNights": "<numNights>"
-        },
+        }
       }
     }
   ]
@@ -626,12 +626,12 @@ appEventData.push({
             "numRooms": "<numRooms>",
             "numAdults": "<numAdults>",
             "numChildren": "<numChildren>"
-        }
+        },
         "scheduling": {
           "startDate": "<startDate>",
           "daysBeforeStartDate": "<daysBeforeStartDate>",
           "endDate": "<endDate>"
-        },
+        }
       }
     }
   ]
