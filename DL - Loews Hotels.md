@@ -9,6 +9,7 @@
 * [Accommodation Booking Cancelled](#Accommodation-Booking-Cancelled)
 * [Accommodation Booking Completed](#Accommodation-Booking-Completed)
 * [Availability Listings Displayed](#Availability-Listings-Displayed)
+* [Error Message Presented](#Error-Message-Presented)
 * [Checkout Started](#Checkout-Started)
 * [Discount Code Entry Failed](#Discount-Code-Entry-Failed)
 * [Discount Code Entry Succeeded](#Discount-Code-Entry-Succeeded)
@@ -192,6 +193,25 @@ appEventData.push({
 |marketCode|string|Unique identifier of the market code.|123, 65588, 987764448||
 |rateCode|string|Description of the rate being offered. Should match rate codes from back-end systems to allow data
 
+## Error Message Presented
+This is for all error captures.  This event you will want to make sure it fires after "Page Load Completed"
+### 
+
+```js
+window.appEventData = window.appEventData || [];;;
+appEventData.push({
+  "event": "Error Message Presented",
+    "error": {
+        "errorCode": "<errorCode>",
+        "errorType": "<errorType>"
+    }
+});
+```
+
+|Field|Type|Description|Example|Pattern|Min Length|Max Length|Minimum|Maximum|Multiple Of|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|errorCode|string|Error code or Error message presented to the user|Credit Card Authorization Failed , EC345, Form is incomplete|||||||
+|errorType|string|General type of error presented|Payment, System, Form|||||||
 
 ## Checkout Started
 
